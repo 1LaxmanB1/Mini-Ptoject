@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 n_estimators = [int(x) for x in np.linspace(start=200, stop=2000, num=10)]  # Number of trees in random forest
 max_features = [1.0, 'sqrt', 'log2']  # Number of features to consider at every split
 max_depth = [int(x) for x in np.linspace(10, 110, num=11)]  # Maximum no. of levels in a tree
-min_samples_split = [2, 5, 10]  # Minimum number of samples required to split a node
+min_samples_split = [2, 4, 6, 8]  # Minimum number of samples required to split a node
 min_samples_leaf = [1, 3, 5]  # Minimum number of samples required at each leaf node
 boostrap = [True, False]  # Method of selecting samples for training each tree
 
@@ -33,11 +33,11 @@ pprint(rfreg.get_params())
 
 print("\n Search space for Random-Search : \n")
 pprint(random_grid)  # To know about the search space we are going
-# to randomly look for the best choice of hyperparameters
+# to randomly look for the best choice of hype-rparameters
 
 # _________RANDOM SEARCH ON RANDOM FOREST______________
 
-'''Search across 100 random cobinations of given space of hyper-parameters
+'''Search across 100 random combinations of given space of hyper-parameters
    ,use all available cores, & perform 5 fold cross-validation '''
 
 rf_random = RandomizedSearchCV(estimator=rfreg, param_distributions=random_grid, n_iter=100, cv=5, verbose=2,

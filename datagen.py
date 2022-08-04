@@ -47,8 +47,8 @@ else :
 
 # ________SPLITTING TRAINING AND TESTING DATA______________
 
-ts = 0.4 # Choosing percentage of splitting for testing data ranges from (0 1)
-slice = 10000 # No. of data points to be taken with no staring point specified
+ts = 0.3 # Choosing percentage of splitting for testing data ranges from (0 1)
+slice = 500 # No. of data points to be taken with no staring point specified
 X_train,X_test,Y_train,Y_test = train_test_split(inputdata[1:slice],outputtarget[1:slice],test_size = ts)
 
 print("Training set size : ")
