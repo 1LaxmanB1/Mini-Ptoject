@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor
 import numpy as np
 import matplotlib.pyplot as plt
 
-dtyp = 1  #Decision variable to choose between Real world / Toy dataset
+dtyp = 0  #Decision variable to choose between Real world / Toy dataset
 
 
 if dtyp == 1:
@@ -32,7 +32,7 @@ if dtyp == 1:
     print("Total dataset size : ")
     print(inputdata.shape)  # The dimension of the array is checked with in par to the documentation
     outputtarget = housesdata['target'].copy()  # Contains the house value / price as the output data
-
+    feature_list = housesdata['feature_names'].copy()
 else :
 
     # __________IMPORTING DIABETES DATASET FROM SCI-KIT LEARN (TOY DATASET)____________
