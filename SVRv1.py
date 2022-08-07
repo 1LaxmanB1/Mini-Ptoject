@@ -8,16 +8,18 @@ import matplotlib.pyplot as plt
 
 # ______CREATING SEARCH SPACE FOR SOME IMPORTANT HYPER-PARAMETERS IN RANDOM FOREST______
 
-kernel = ['linear', 'poly', 'rbf', 'sigmoid']
-C=[0.25, 0.5, 0.75, 1 ]
-epsilon = [0.00001, 0.1, 0.25, 0.5, 1]
-degree = [3, 5, 7, 9]
+kernel = ['linear', 'poly', 'rbf']
+C=[0.1, 1]
+epsilon = [0.1, 0.25, 0.5, 1]
+degree = [3, 9, 2, 15]
+gamma = [1, 0.1, 0.01, 0.001, 'scale']
 random_grid_svr = \
     {
     'kernel': kernel,
     'C': C,
     'epsilon': epsilon,
-    'degree' : degree
+    #'degree': degree,
+    'gamma' : gamma
     }
 
 # _______ BASIC RANDOM FOREST MODEL__________________
