@@ -28,15 +28,15 @@ def regressionscorev1(model,X_Test,Y_true,regname,dataname):
     p1 = max(max(y_predict), max(Y_true))
     p2 = min(min(y_predict), min(Y_true))
 
-    fig = plt.figure()
+    fig = plt.figure(figsize=(8,6))
     plt.scatter(x=xplot, y=yplot, c='crimson')
     plt.plot([p1,p2],[p1,p2],'b-')
     plt.xlabel("Predicted value")
     plt.ylabel("Actual value")
     plt.title("Regression plot on " + dataname +" using " + regname +" , its R^2 is " + str(R2))
-    plt.legend('Regression Line',"(Predicted,Actual value) as points")
+    plt.legend(["(Predicted,Actual value) as points",'Regression Line'],loc ="lower right")
     #plt.ion()
-    plt.show()  # To show the plot
+    # plt.show()  # To show the plot
 
     Scoremetrics = {
                     "R^2" : R2,
@@ -45,4 +45,4 @@ def regressionscorev1(model,X_Test,Y_true,regname,dataname):
                     "Root Mean Squared Error " : rmse
                     }
 
-    return Scoremetrics
+    return Scoremetrics,fig

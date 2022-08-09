@@ -57,11 +57,11 @@ rfbase = RandomForestRegressor(random_state=42)
 rfbase.fit(X_train,Y_train)
 
 
-rfbase_trainaccuracy = regressionscorev1(rfbase,X_train,Y_train,'RF Base model','Training Dataset')
+rfbase_trainaccuracy,fig_bas_train = regressionscorev1(rfbase,X_train,Y_train,'RF Base model','Training Dataset')
 print("Score metrics for Random Forest Base model (Training): \n")
 pprint(rfbase_trainaccuracy)
 
-rfbase_testaccuracy = regressionscorev1(rfbase,X_test,Y_test,'RF Base model','Testing Dataset')
+rfbase_testaccuracy,fig_bas_test = regressionscorev1(rfbase,X_test,Y_test,'RF Base model','Testing Dataset')
 print("Score metrics for Random Forest Base model (Testing): \n")
 pprint(rfbase_testaccuracy)
 
@@ -69,10 +69,16 @@ pprint(rfbase_testaccuracy)
 
 
 rfbest = rf_random.best_estimator_
-rfbest_trainaccuracy=regressionscorev1(rfbest,X_train,Y_train, 'RF Best model', 'Training Dataset')
+
+rfbest_trainaccuracy,fig_bes_train=regressionscorev1(rfbest,X_train,Y_train, 'RF Best model', 'Training Dataset')
 print("Score metrics for Random Forest Best model via Random Search (Training): \n")
 pprint(rfbest_trainaccuracy)
 
-rfbest_testaccuracy=regressionscorev1(rfbest,X_test,Y_test, 'RF Best model', "Testing Dataset")
+rfbest_testaccuracy,fig_bes_test=regressionscorev1(rfbest,X_test,Y_test, 'RF Best model', "Testing Dataset")
 print("Score metrics for Random Forest Best model via Random Search (Testing): \n")
 pprint(rfbest_testaccuracy)
+
+
+
+
+plt.show()

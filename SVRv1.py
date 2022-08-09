@@ -8,17 +8,17 @@ import matplotlib.pyplot as plt
 
 # ______CREATING SEARCH SPACE FOR SOME IMPORTANT HYPER-PARAMETERS IN RANDOM FOREST______
 
-kernel = ['linear', 'rbf', 'poly']
-C=[int(x) for x in np.linspace(0.001, 1000, num=10)]
+kernel = ['linear', 'rbf','sigmoid']
+C=[0.1, 10, 100, 1000, 10000]
 epsilon = [0.1, 0.001, 0.01, 1]
 degree = [3, 9, 2, 7]
-gamma = [int(x) for x in np.linspace(0.001, 1000, num=10)]
+gamma = [0.001, 0.1, 10, 100, 1000]
 random_grid_svr = \
     {
     'kernel': kernel,
     'C': C,
     'epsilon': epsilon,
-    'degree': degree,
+    # 'degree': degree,
     'gamma' : gamma
     }
 
@@ -64,10 +64,12 @@ svrbest_trainaccuracy = regressionscorev1(svrbest,X_train,Y_train,'SVR Best mode
 print("Score metrics for SVR Best model (Training): \n")
 pprint(svrbest_trainaccuracy)
 
-svrbest_testaccuracy=regressionscorev1(svrbest,X_test,Y_test, 'RF Best model', 'Testing Dataset')
+svrbest_testaccuracy=regressionscorev1(svrbest,X_test,Y_test, 'SVR Best model', 'Testing Dataset')
 print("Score metrics for SVR Best model (Testing): \n")
 pprint(svrbest_testaccuracy)
 
+
+plt.show()
 
 
 

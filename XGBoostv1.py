@@ -11,13 +11,16 @@ from pprint import pprint
 
 n_estimators = [int(x) for x in np.linspace(start=200, stop=2000, num=10)]  # Number of trees in random forest
 learning_rate = [0.1, 0.01, 0.3, 0.5]
-max_depth = [int(x) for x in np.linspace(10, 110, num=11)]  # Maximum no. of levels in a tree
+max_depth = [int(x) for x in np.linspace(3, 50, num=11)]  # Maximum no. of levels in a tree
+min_child_weight = [3,5,9,15]
 
 random_grid = \
     {
     'n_estimators': n_estimators,
     'learning_rate': learning_rate,
     'max_depth': max_depth,
+    'min_child_weight': min_child_weight
+
     }
 
 # _______ BASIC XGBOOST MODEL__________________
@@ -70,3 +73,5 @@ pprint(xgbbest_trainaccuracy)
 xgbbest_testaccuracy=regressionscorev1(xgbbest, X_test, Y_test, 'XGBoost Best model','Testing Dataset')
 print("Score metrics for XGBoost Best model (Testing) : \n")
 pprint(xgbbest_testaccuracy)
+
+plt.show()

@@ -10,6 +10,7 @@ import seaborn as sns
 from mlxtend.feature_selection import ExhaustiveFeatureSelector
 # from sklearn.linear_model import LinearRegression as lr
 from Featureselectionv1 import featureselection
+import seaborn as sns
 
 dtyp = 1  #Decision variable to choose between Real world / Toy dataset
 
@@ -45,10 +46,11 @@ if dtyp == 1:
 
     hsdfv1 = pd.DataFrame(inputdata)
     hsdfv1.columns = feature_list
-    hsdfv1['HouseValue'] = outputtarget
+    hsdfv1['HouseValue'] = outputtarget*100000
     # print(hsdfv1)
     inputdatav2 = hsdfv1[['MedInc','Latitude','Longitude','HouseValue']]
     dataf=hsdfv1
+    # dataf=inputdatav2
 
 
 
@@ -99,8 +101,8 @@ if dtyp == 1 :
             x="Longitude",
             y="Latitude",
             alpha=0.5,
-            s=Datat["MedInc"]*5,
-            label="Median Income",
+            s=Datat["Population"]/100,
+            label="Population",
             c="Target",
             cmap=plt.get_cmap("jet"),
             colorbar=True)
@@ -112,4 +114,8 @@ if dtyp == 1 :
 # _______FEATURE SELECTION___________
 # print(dataf)
 featureselection(X_train, Y_train, dataf.iloc[:,:-1].columns, Datat)
+
+
+
+
 
