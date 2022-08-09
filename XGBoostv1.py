@@ -46,12 +46,27 @@ pprint(xgb_random.best_params_)
 
 xgbbase = XGBRegressor(random_state=42)
 xgbbase.fit(X_train, Y_train)
-xgbbase_accuracy=regressionscorev1(xgbbase, X_test, Y_test, 'XGBoost Base model')
-print("Score metrics for XGBoost Base model : \n")
-pprint(xgbbase_accuracy)
+
+
+xgbbase_trainaccuracy=regressionscorev1(xgbbase, X_train, Y_train, 'XGBoost Base model','Training Dataset')
+print("Score metrics for XGBoost Base model (Testing) : \n")
+pprint(xgbbase_trainaccuracy)
+
+
+
+xgbbase_testaccuracy=regressionscorev1(xgbbase, X_test, Y_test, 'XGBoost Base model','Testing Dataset')
+print("Score metrics for XGBoost Base model (Testing) : \n")
+pprint(xgbbase_testaccuracy)
 
 
 xgbbest = xgb_random.best_estimator_
-xgbbest_accuracy = regressionscorev1(xgbbase, X_test, Y_test, 'XGBoost Best model')
-print("Score metrics for XGBoost Best model via Random Search: \n")
-pprint(xgbbest_accuracy)
+
+xgbbest_trainaccuracy=regressionscorev1(xgbbest, X_train, Y_train, 'XGBoost Best model','Training Dataset')
+print("Score metrics for XGBoost Best model (Training) : \n")
+pprint(xgbbest_trainaccuracy)
+
+
+
+xgbbest_testaccuracy=regressionscorev1(xgbbest, X_test, Y_test, 'XGBoost Best model','Testing Dataset')
+print("Score metrics for XGBoost Best model (Testing) : \n")
+pprint(xgbbest_testaccuracy)

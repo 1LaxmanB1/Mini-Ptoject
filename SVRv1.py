@@ -8,17 +8,17 @@ import matplotlib.pyplot as plt
 
 # ______CREATING SEARCH SPACE FOR SOME IMPORTANT HYPER-PARAMETERS IN RANDOM FOREST______
 
-kernel = ['linear', 'poly', 'rbf']
-C=[0.1, 1]
-epsilon = [0.1, 0.25, 0.5, 1]
-degree = [3, 9, 2, 15]
-gamma = [1, 0.1, 0.01, 0.001, 'scale']
+kernel = ['linear', 'rbf', 'poly']
+C=[int(x) for x in np.linspace(0.001, 1000, num=10)]
+epsilon = [0.1, 0.001, 0.01, 1]
+degree = [3, 9, 2, 7]
+gamma = [int(x) for x in np.linspace(0.001, 1000, num=10)]
 random_grid_svr = \
     {
     'kernel': kernel,
     'C': C,
     'epsilon': epsilon,
-    #'degree': degree,
+    'degree': degree,
     'gamma' : gamma
     }
 
@@ -47,15 +47,26 @@ pprint(svr_random.best_params_)
 
 svrbase = svm.SVR()
 svrbase.fit(X_train,Y_train)
-svrbase_accuracy=regressionscorev1(svrbase,X_test,Y_test,'SVR Base model')
+
+svrbase_trainaccuracy = regressionscorev1(svrbase,X_train,Y_train,'SVR Base model','Training Dataset')
+print("Score metrics for SVR Base model (Training): \n")
+pprint(svrbase_trainaccuracy)
+
+
+svrbase_testaccuracy=regressionscorev1(svrbase,X_test,Y_test,'SVR Base model','Testing Dataset')
 print("Score metrics for SVR Base model : \n")
-pprint(svrbase_accuracy)
+pprint(svrbase_testaccuracy)
 
 
 svrbest = svr_random.best_estimator_
-svrbest_accuracy=regressionscorev1(svrbest,X_test,Y_test, 'RF Best model')
-print("Score metrics for SVR Best model via Random Search: \n")
-pprint(svrbest_accuracy)
+
+svrbest_trainaccuracy = regressionscorev1(svrbest,X_train,Y_train,'SVR Best model','Training Dataset')
+print("Score metrics for SVR Best model (Training): \n")
+pprint(svrbest_trainaccuracy)
+
+svrbest_testaccuracy=regressionscorev1(svrbest,X_test,Y_test, 'RF Best model', 'Testing Dataset')
+print("Score metrics for SVR Best model (Testing): \n")
+pprint(svrbest_testaccuracy)
 
 
 

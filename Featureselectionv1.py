@@ -10,39 +10,45 @@ from skfeature.function.similarity_based import fisher_score
 import seaborn as sns
 from mlxtend.feature_selection import SequentialFeatureSelector
 # from sklearn.linear_model import LinearRegression as lr
-
+import matplotlib.pyplot as plt
 
 def featureselection(inputdata,outputtarget,feature_list,hsdfv1):
+
+
 
 
     # _______Feature selection via Information gain___________
 
     importances = mutual_info_regression(inputdata,outputtarget)
     feat_importances = pd.Series(importances, feature_list)
-    plt.figure(1)
+    plt.subplot(1,2,1)
     feat_importances.plot(kind = 'barh', color = 'teal')
     print(feature_list)
     plt.title("Feature importance graph via Information gain")
     plt.ylabel("Features")
     plt.xlabel("Score")
-    plt.show()
+    # plt.show()
 
     # # _______Feature selection via Fisher score-------------------
-    #
+    # print(inputdata)
+    # print(outputtarget)
     # ranks = fisher_score.fisher_score(inputdata,outputtarget)
+    #
+    # print(ranks)
+    # print(feature_list)
     # feat_importances_fs = pd.Series(ranks, feature_list)
-    # plt.figure(2)
+    # plt.subplot(2,2,2)
     # feat_importances_fs.plot(kind='barh', color = 'teal')
     # print(feature_list)
     # plt.title("Feature importance graph via Fisher Score")
     # plt.ylabel("Features")
     # plt.xlabel("Score")
-    # plt.show()
+
 
     # ________Feature selection via correlation coefficent____________
 
     corr = hsdfv1.corr() #Correlation matrix
-    plt.figure(figsize= (10,6))
+    plt.subplot(1,2,2)
     sns.heatmap(corr,annot = True)
     plt.title ("Correlation Heat-map to identify relationship between features")
     plt.show()
